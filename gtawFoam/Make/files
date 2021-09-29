@@ -1,0 +1,15 @@
+teeDepVis/TdepVis.C
+threePhaseMixture/threePhaseMixture.C
+gtawIncompressibleThreePhaseMixture/gtawIncompressibleThreePhaseMixture.C
+immiscibleIncompressibleThreePhaseMixture/immiscibleIncompressibleThreePhaseMixture.C
+gtawInterfaceProperties/gtawInterfaceProperties.C
+heatClass/heatSourceClass.C
+alphaClass/alphaSourceClass.C
+AMheatClass/AMheatSourceClass.C
+AMalphaClass/AMalphaSourceClass.C
+velClass/velSourceClass.C
+emClass/emSourceClass.C
+
+gtawFoam.C
+
+EXE = $(FOAM_USER_APPBIN)/gtawFoam
