@@ -1,0 +1,210 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// This is for gallium in cavity
+
+alpha1TControl 1.0;
+alphaInterfaceCut 1e6;
+alpha2Capture 0.125;
+
+//phases (Phase1 Phase2);
+
+phases (Phase1 Phase2 Phase3);
+
+phaseChangeTwoPhaseMixture Weld;
+
+pSat            0;   // Saturation pressure
+pMin            0; 
+
+sigma           0;//.05;//.01;//.3;//0.07;
+sigma12         0;
+sigma13         0;
+sigma23         0;
+D23             0;
+
+k [1 1 -3 -1 0 0 0] 1;
+nuEM 1;
+nu [0 2 -1 0 0 0 0] 2.98e-07;
+rho [1 -3 0 0 0 0 0] 1000;
+cp [0 2 -2 -1 0 0 0] 1000;
+
+//k k [1 1 -3 1 0 0 0] 1; // kg*m/s^3*k
+/*
+k1 0;//0.02;
+k2 32;//24; //24 liquid, 40 solid?
+k3  32;//40;//40;
+*/
+k_weld 0;//40; 
+
+multiplierBuoy 8e8;//5e8;
+multiplierBuoyG 0;//5e9;//1.6e6;
+sourceTime 0;
+
+dmdtRelaxAlpha 10;//0.5;//2.5;
+dmdtRelaxPressure 0;//-0.005;
+/*
+cp1 [0 2 -2 -1 0 0 0] 381.5;//1000;
+cp2 [0 2 -2 -1 0 0 0] 381.5;
+cp3 [0 2 -2 -1 0 0 0] 381.5;
+*/
+SuFudge 0;
+testFudge 1;
+
+dsigmadT 0;
+
+meltingT 273.15;
+
+T_0 273.15;
+
+//cp cp [0 2 -2 -1 0 0 0] 381.5;
+
+rhoRef 999.8;
+
+htot htot [1 -1 -2 0 0 0 0] 1;
+
+Lf 3.35e5; //80.16 kJ/kg
+
+Tref 273.15;//302.93; // 29.78 C
+
+beta 0;//210e-6;
+
+vsfRho true;
+rhofT true;
+LfSmoothing true;
+// Phase prop match stops spurious - reweight???
+/*
+phases
+(
+*/
+Phase1 // air
+{
+    transportModel  Newtonian;
+    nu              1.48e-05;
+    rho             1.1;
+//    nu              nu [ 0 2 -1 0 0 0 0 ] 2.98e-07;
+//    rho             rho [ 1 -3 0 0 0 0 0 ] 6093;//6100;
+//    cp              cp [ 0 2 -2 -1 0 0 0] 381.5;
+//    k               k [ 1 1 -3 -1 0 0 0] 32;
+    cp              cp [ 0 2 -2 -1 0 0 0] 1000;
+    k               k [ 1 1 -3 -1 0 0 0] 0.02;
+//    cp              381.5;
+//    Pr              0.74;
+}
+
+Phase2 // liquid
+{
+    transportModel  Newtonian;
+//    nu              nu [ 0 2 -1 0 0 0 0 ] 2.97e-07;
+//    rho             rho [ 1 -3 0 0 0 0 0 ] 5910;//6093;
+    nu              nu [ 0 2 -1 0 0 0 0 ] 1e-6;
+    rho             rho [ 1 -3 0 0 0 0 0 ] 999.840281167108 ;//6100;   
+    Tref            273.15;
+    beta            0;//210e-6;
+    cp              cp [ 0 2 -2 -1 0 0 0] 4187;
+    k               k [ 1 1 -3 -1 0 0 0] 0.6;
+/*
+    Tdep            true;
+    Shomate         true;
+    a -203.6060;
+    b 1523.290;
+    d -3196.413;
+    e 2474.455;
+    c 3.855326;
+*/
+//    Pr              0.02;
+    rho2Opt        true;
+    rho2a          0.0673268037314653;
+    rho2b          -0.00894484552601798;
+    rho2c          8.78462866500416e-5;
+    rho2d          6.62139792627547e-7;          
+/*
+*/
+}
+
+Phase3 // solid
+{
+    // N.B argument is three phase more involved so therefore need bells and whistles
+    transportModel  Newtonian;
+    nu              2.97e-07;
+    rho             916.8; // 5.91 g/cm^3 less tham liquid;
+//    nu              nu [ 0 2 -1 0 0 0 0 ] 2.97e-07;
+//    rho             rho [ 1 -3 0 0 0 0 0 ] 6093;//6100;
+    cp              cp [ 0 2 -2 -1 0 0 0] 2116;
+    k               k [ 1 1 -3 -1 0 0 0] 2.26;
+//    Pr              0.02;
+}
+/*
+Phase4 // solid
+{
+    transportModel  Newtonian;
+    nu              2.98e-07;
+    rho             6093;//6100;
+}
+);
+
+sigmas
+(
+    (Phase1 Phase2) 0
+    (Phase1 Phase3) 0
+    (Phase2 Phase3) 0
+);
+*/
+
+KunzCoeffs
+{
+    UInf            U20.0;
+    tInf            t0.005; // L = 0.1 m
+    Cc              C1000;
+    Cv              C1000;
+}
+
+MerkleCoeffs
+{
+    UInf            20.0;
+    tInf            0.005;  // L = 0.1 m
+    Cc              80;
+    Cv              1e-03;
+}
+
+WeldCoeffs
+{
+    UInf            1;
+    tInf            1;  // L = 0.1 m
+    Cc              1;
+    Cv              1;
+    Tmelt           302.93; //302.93; // 1940; // ti-6-4
+    Tzero           0;
+    Tone            1;
+    Tmone           -1;
+    kgOne           1;
+    Mone            1;
+    tOne            1;
+    test            0;
+    Cp              381.5;
+    Lf              80160;
+}
+
+
+SchnerrSauerCoeffs
+{
+    n               1.6e+13;
+    dNuc            2.0e-06;
+    Cc              1;
+    Cv              1;
+}
+
+
+// ************************************************************************* //
