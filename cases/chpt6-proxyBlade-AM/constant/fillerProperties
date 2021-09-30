@@ -1,0 +1,26 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fillerProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+alphaOn true;
+alphaMult 1.0;
+alphaPos0 (0 0 0.043);
+alphaVel (-0.0005 0 0);
+alphaOmega 0.0015;
+alphaFieldCut 0.5;
+
+// If start time not 0 need pause geq
+alphaStartTime 20;
+alphaPauseTime 20;
