@@ -1,0 +1,6 @@
+/* dynamicCode:
+ * SHA1 = 4ae3693dfad00ff072a5737c97689db1a74e7879
+ */
+mixedFvPatchFieldTemplate.C
+
+LIB = $(PWD)/../platforms/$(WM_OPTIONS)/lib/libjohnnu_4ae3693dfad00ff072a5737c97689db1a74e7879

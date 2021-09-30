@@ -1,0 +1,6 @@
+/* dynamicCode:
+ * SHA1 = 276893b7ceb62a059a9a0eb22e4c2c39823c2afe
+ */
+fixedValueFvPatchFieldTemplate.C
+
+LIB = $(PWD)/../platforms/$(WM_OPTIONS)/lib/libswirlsterino_276893b7ceb62a059a9a0eb22e4c2c39823c2afe
