@@ -1,0 +1,75 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+defaultFieldValues
+(
+    volScalarFieldValue alpha.Phase1 1
+    volScalarFieldValue alpha.Phase2 0
+    volScalarFieldValue alpha.Phase3 0
+);
+
+regions
+(
+/*
+    boxToCell
+    {
+        box (0 -3 0.0535) (0.0889 3 0.1035);
+        fieldValues
+        (
+            volScalarFieldValue alpha1 1
+            volScalarFieldValue alpha2 0
+            volScalarFieldValue alpha3 0
+        );
+    }
+*/
+    /*
+    boxToCell
+    {
+        box (0 -3 0) (0.02 3 0.0535);
+        fieldValues
+        (
+            volScalarFieldValue alpha1 0
+            volScalarFieldValue alpha2 0
+            volScalarFieldValue alpha3 1
+        );
+    }
+    boxToCell
+    {
+        box (0.02 -3 0) (0.0489 3 0.0535);
+        fieldValues
+        (
+            volScalarFieldValue alpha1 0
+            volScalarFieldValue alpha2 1
+            volScalarFieldValue alpha3 0
+        );
+    }
+    */
+    boxToCell
+    {
+//        box (0.04445 -0.02 0) (0.06445 0.02 0.0535);
+        box (-10 -10 -10) (10 10 0.006);
+        fieldValues
+        (
+            volScalarFieldValue alpha.Phase1 0
+            volScalarFieldValue alpha.Phase2 0
+            volScalarFieldValue alpha.Phase3 1
+        );
+    }
+);
+
+
+// ************************************************************************* //
