@@ -1,0 +1,69 @@
+/*
+      type            codedMixed;
+      refValue        uniform 0;
+      refGradient     uniform 0;
+      valueFraction   uniform 1;
+          const scalarField& delta = patch().deltaCoeffs();
+          this->refValue() = 298;
+          this->refGrad() = 0;
+          this->valueFraction() = 1.0/(1.0+0.6/(1.0/delta));
+*/
+/*
+        type    mixed;
+        refValue        uniform 300;
+        refGradient     uniform 0;
+        valueFraction   uniform 0;
+*/
+/*
+        type            groovyBC;
+        value           uniform 300;
+        valueExpression "Tinf_Air";
+        gradientExpression "0";
+        fractionExpression "f_Air";
+        evaluateDuringConstruction 0;
+        cyclicSlave     0;
+        variables       
+4
+(
+"k_Air=0.02;"
+"alpha_Air=50;"
+"Tinf_Air=300;"
+"f_Air=1/(1+k_Air/(alpha_Air*mag(delta())));"
+)
+;
+        timelines       (
+);
+        lookuptables    (
+);
+        lookuptables2D  (
+);
+*/
+
+
+/*
+        type            groovyBC;
+        value           uniform 300;
+        valueExpression "Tinf_Met";
+        gradientExpression "0";
+        fractionExpression "f_Met";
+        evaluateDuringConstruction 0;
+        cyclicSlave     0;
+        variables       
+6
+(
+"k_Met=16.3;"
+"Tinf_Met=300;"
+//"alpha_Met=10;"
+"sig_rad=5.6e-8;"
+"emmi=0.7;"
+"alpha_Met=8+(sig_rad*emmi*(pow(T,2)+pow(Tinf_Met,2))*(T+Tinf_Met));"
+"f_Met=1/(1+k_Met/(alpha_Met*mag(delta())));"
+)
+;
+        timelines       (
+);
+        lookuptables    (
+);
+        lookuptables2D  (
+);
+*/
