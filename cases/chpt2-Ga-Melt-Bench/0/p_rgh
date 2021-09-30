@@ -1,0 +1,69 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1906                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p_rgh;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [1 -1 -2 0 0 0 0];
+
+internalField   uniform 1e5;
+
+boundaryField
+{
+    cold    
+    {
+//        type            fixedFluxPressure;
+//        value           $internalField;
+        type            zeroGradient;
+//        type            fixedFluxPressure;
+//        type            totalPressure;
+//        p0              uniform 0;
+    }
+    btm
+    {
+//        type            fixedFluxPressure;
+//        value           $internalField;
+        type            zeroGradient;
+//        type            outletInlet;
+//        outletValue     uniform 0;
+//        type            fixedFluxPressure;
+//        value           uniform 0;//1e5;
+    }
+    top    
+    {
+//        type            fixedFluxPressure;
+//        value           uniform 0;//1e5;
+        type            totalPressure;
+        p0              $internalField;
+        value           $internalField;
+    }
+    hot
+    {
+//        type            fixedFluxPressure;
+//        value           $internalField;
+        type            zeroGradient;
+//        type            fixedFluxPressure;
+//        value           uniform 0;//1e5;
+//        p0              $internalField;;
+//        type            totalPressure;
+//        value           uniform 1e5;
+//        value           $internalField;
+    }
+    frontAndBack
+    {
+        type empty;
+    }
+}
+
+
+// ************************************************************************* //
