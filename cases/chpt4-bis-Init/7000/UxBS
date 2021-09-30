@@ -1,0 +1,61 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "7000";
+    object      UxBS;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [1 0 -3 0 0 -1 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    hot
+    {
+        type            extrapolatedCalculated;
+        value           uniform 0;
+    }
+    hotTop
+    {
+        type            extrapolatedCalculated;
+        value           uniform 0;
+    }
+    cold
+    {
+        type            extrapolatedCalculated;
+        value           uniform 0;
+    }
+    coldTop
+    {
+        type            extrapolatedCalculated;
+        value           uniform 0;
+    }
+    top
+    {
+        type            extrapolatedCalculated;
+        value           uniform 0;
+    }
+    btm
+    {
+        type            extrapolatedCalculated;
+        value           uniform 0;
+    }
+    frontAndBack
+    {
+        type            empty;
+    }
+}
+
+
+// ************************************************************************* //

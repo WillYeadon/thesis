@@ -1,0 +1,107 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      setFieldsDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+defaultFieldValues
+(
+    volScalarFieldValue alpha.Phase1 1
+    volScalarFieldValue alpha.Phase2 0
+    volScalarFieldValue alpha.Phase3 0
+    volScalarFieldValue T 544.55
+//    volScalarFieldValue T 544.55
+);
+
+regions
+(
+    boxToCell
+    {
+        box (-100 -100 -100) (0.1 100 0.04);//(085 100 0425);
+        fieldValues
+        (
+            volScalarFieldValue alpha.Phase1 0
+            volScalarFieldValue alpha.Phase2 1
+            volScalarFieldValue alpha.Phase3 0 
+            volScalarFieldValue T 552.55
+//            volScalarFieldValue T 552.55
+        );
+    }
+    boxToCell
+    {
+        box (0.1 -100 -100) (100 100 0.04);
+        fieldValues
+        (
+            volScalarFieldValue alpha.Phase1 0
+            volScalarFieldValue alpha.Phase2 0
+            volScalarFieldValue alpha.Phase3 1
+            volScalarFieldValue T 540.55
+//            volScalarFieldValue T 540.55
+//            volScalarFieldValue T 541.55
+        );
+    }
+    boxToCell
+    {
+        box (-100 -100 -100) (0.04 100 100);
+        fieldValues
+        (
+            volScalarFieldValue T 552.55
+        );
+    }
+    boxToCell
+    {
+        box (0.04 -100 -100) (0.06 100 100);
+        fieldValues
+        (
+            volScalarFieldValue T 547.55
+        );
+    }
+    boxToCell
+    {
+        box (0.06 -100 -100) (0.08 100 100);
+        fieldValues
+        (
+            volScalarFieldValue T 546.55
+        );
+    }
+    boxToCell
+    {
+        box (0.08 -100 -100) (0.1 100 100);
+        fieldValues
+        (
+            volScalarFieldValue T 543.55
+        );
+    }
+    boxToCell
+    {
+        box (0.1 -100 -100) (0.12 100 100);
+        fieldValues
+        (
+            volScalarFieldValue T 541.55
+        );
+    }        
+    boxToCell
+    {
+        box (0.12 -100 -100) (100 100 100);
+        fieldValues
+        (
+            volScalarFieldValue T 540.55
+        );
+    }
+    /*
+    */
+);
+
+
+// ************************************************************************* //

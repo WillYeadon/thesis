@@ -1,0 +1,33 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      sourceProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+sourceVel (0 0 0);
+sourcePos0 (0 0 0);
+sourcePos1 (0 0 0);
+sourcePos2 (0 0 0);
+sourceOmega 1e-3;
+sourcePenn 1e-3;
+sourceStartTime 10000;
+sourcePauseTime 10000;
+sourceEndTime 100000000;
+sourcePower 0;
+sourceC_C 0;
+sourceFieldCut 0.01;
+
+sourcePause 1000;
+sourceTwo 1000;
+sourceThree 1000;
+oneMeter 1;
