@@ -1,0 +1,63 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1906                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      binary;
+    class       volVectorField;
+    object      A;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [1 1 -2 0 0 -1 0];
+
+internalField   uniform (0 0 0);
+
+boundaryField
+{
+    hot
+    {
+      type   zeroGradient;
+//      type   fixedValue;
+//      value uniform (0 0 0);
+//      type   fixedValue;
+//      value uniform (0 0 0);
+    }
+    top
+    {
+      type   zeroGradient;
+//      type   fixedValue;
+//      value uniform (0 -0.05 0);
+//      value uniform (0 0 0);
+    }
+    cold
+    {
+      type   zeroGradient;
+//      type   fixedValue;
+//      value uniform (0 0 0);
+//      type   fixedValue;
+//      value uniform (0 0 0);
+    }
+    btm
+    {
+      type   zeroGradient;
+//      type   fixedValue;
+//      value uniform (0 0.050 0);
+//      value uniform (0 0 0);
+    }
+    front
+    {
+      type   empty;
+    }
+    back
+    {
+      type   empty;
+    }
+}           
+
+// ************************************************************************* //

@@ -1,0 +1,73 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+//    default             CrankNicolson 1;
+    default             Euler;
+}
+
+interpolationSchemes
+{
+    default             linear;
+}
+
+divSchemes
+{
+    default                     Gauss linear;
+    div(rhoPhi,U)               Gauss linearUpwind grad(U);
+    div(phi,alpha)              Gauss vanLeer;
+    div(phirb,alpha)            Gauss vanLeer;
+    // Added by MN
+    div((muEff*dev(T(grad(U))))) Gauss linear;
+    div(R)           Gauss linear;
+    div(rhoPhi,H)               Gauss linearUpwind grad(H);
+    div(rhoPhiCp,T)             Gauss vanLeer;
+    div(phi,T)                  Gauss upwind;
+}
+
+gradSchemes
+{
+    default             Gauss linear;
+//    default             linear;
+}
+
+laplacianSchemes
+{
+    default             Gauss linear corrected;
+//    laplacian(kEff,T)   Gauss linear uncorrected;
+}
+
+snGradSchemes
+{
+//    default             orthogonal;
+    default         corrected;
+//    snGrad(T)            limited 0.5;
+}
+
+wallDist
+{
+    method meshWave;
+}
+
+fluxRequired
+{
+    alpha.Phase1        none;
+    alpha.Phase2        none;
+    alpha.Phase3        none;
+}
+
+// ************************************************************************* //
