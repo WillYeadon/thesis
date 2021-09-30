@@ -1,0 +1,12 @@
+#!/bin/bash
+mkdir alphaFrac
+cp 0/alpha.Phase2 alphaFrac/0-alpha-Phase1.txt
+cp 0/alpha.Phase3 alphaFrac/0-alpha-Phase2.txt
+cp 120/alpha.Phase2 alphaFrac/120-alpha-Phase1.txt
+cp 120/alpha.Phase3 alphaFrac/120-alpha-Phase2.txt
+cp 360/alpha.Phase2 alphaFrac/360-alpha-Phase1.txt
+cp 360/alpha.Phase3 alphaFrac/360-alpha-Phase2.txt
+cp 600/alpha.Phase2 alphaFrac/600-alpha-Phase1.txt
+cp 600/alpha.Phase3 alphaFrac/600-alpha-Phase2.txt
+cp 1020/alpha.Phase2 alphaFrac/1020-alpha-Phase1.txt
+cp 1020/alpha.Phase3 alphaFrac/1020-alpha-Phase2.txt
