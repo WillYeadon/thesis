@@ -1,0 +1,116 @@
+  /*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.01;
+
+vertices 
+(
+    (0 -1 0)
+    (9 -1 0)
+    (9 1 0)
+    (0 1 0)
+    (0 -1 6.5)
+    (9 -1 6.5)
+    (9 1 6.5)
+    (0 1 6.5)
+    (0 -1 7)
+    (9 -1 7)
+    (9 1 7)
+    (0 1 7)
+);
+
+blocks
+(
+//    hex (0 1 2 3 4 5 6 7) allZone (8 1 6) simpleGrading (1 1 1)
+    hex (0 1 2 3 4 5 6 7) allZone (90 1 65) simpleGrading (1 1 1)
+    hex (4 5 6 7 8 9 10 11) allZone (90 1 5) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    hot
+    {
+        type wall;
+        faces
+        (
+        (0 4 7 3)        
+        );
+    }
+    hotTop
+    {
+        type patch;
+        faces
+        (
+        (4 8 11 7)        
+        );
+    }
+    cold
+    {
+        type wall;
+        faces
+        (
+        (2 6 5 1)
+        );
+    }
+    coldTop
+    {
+        type patch;
+        faces
+        (
+        (6 10 9 5)
+        );
+    }
+    /*
+    */
+    top
+    {
+        type patch;
+        faces
+        (
+//        (4 5 6 7)
+        (8 9 10 11)            
+        );
+    }
+    btm
+    {
+        type wall;
+        faces
+        (
+        (0 3 2 1)
+        );
+    }
+    frontAndBack
+    {
+        type empty;
+        faces
+        (
+        (3 7 6 2)
+        (1 5 4 0)
+        (7 10 11 6)
+        (5 8 9 4)
+        );
+    }
+);
+mergePatchPairs
+(
+);
+
+
+// ************************************************************************* //
