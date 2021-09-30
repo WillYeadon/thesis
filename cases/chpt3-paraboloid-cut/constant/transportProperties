@@ -1,0 +1,195 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      transportProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// This is for gallium in cavity
+
+phaseChange 1.0;
+alpha1TControl 1.0;
+alphaInterfaceCut 1;
+meltInterface 1e-6;
+alpha2Capture 0.0008;
+
+//phases (Phase1 Phase2);
+phases (Phase1 Phase2 Phase3);
+
+phaseChangeTwoPhaseMixture Weld;
+
+pSat            0;   // Saturation pressure
+pMin            0; 
+
+sigma           0;//.05;//.01;//.3;//0.07;
+sigma12         0.07;
+sigma13         0;
+sigma23         0;//0.07;
+/*
+*/
+D23             0;
+
+k [1 1 -3 -1 0 0 0] 1;//0;
+nu [0 2 -1 0 0 0 0] 2.98e-07;
+rho [1 -3 0 0 0 0 0] 6000;
+cp [0 2 -2 -1 0 0 0] 381.5;
+
+nuEM    1;//2.97e-07;
+k       16.3; 
+//k k [1 1 -3 1 0 0 0] 1; // kg*m/s^3*k
+/*
+*/
+k1 0.02;
+k2 25;//24; //24 liquid, 40 solid?
+k3  40;//40;//40;
+nu1_shadow 1.48e-05;
+nu2_shadow 2.97e-07;
+nu3_shadow 3e-07;
+
+k_weld 0;//40; 
+
+multiplierBuoy 5e8;
+multiplierBuoyG 0;//5e7;//1e8;//5e8;//5e7;//1e8;//2.2e7;//1.6e6;//1.6e6;//
+sourceTime 0;
+
+dmdtRelaxAlpha 2.5;// 2.5 -> 5
+dmdtRelaxPressure 0.01;// -> 0.075 (I think they're linked) 
+
+cp1 1000;
+cp2 620;
+cp3 530;
+
+SuFudge 0;
+testFudge 0.0;
+
+dsigmadT 0;
+
+meltingT 1450;
+
+T_0 1450;
+
+cp cp [0 2 -2 -1 0 0 0] 500;
+
+rhoRef rhoRef [1 -3 0 0 0 0 0] 8e3;
+
+htot htot [1 -1 -2 0 0 0 0] 1;
+
+Lf 2.6e5;//334000; // water
+
+Tref 1450;
+
+beta 1.2e-4;
+
+// Phase prop match stops spurious - reweight???
+/*
+phases
+(
+*/
+Phase1 // air
+{
+    transportModel  Newtonian;
+    nu              1.48e-05;
+    rho             1;
+    cp              1000;
+//    cp              381.5;
+    k               0.02;
+    Pr              0.74;
+}
+/*
+Phase1 // water
+{
+    transportModel  Newtonian;
+    CTLE            0.0;//1e-6;
+    nu              2.97e-07; 
+    rho             8e3;//4140;
+    cp              500;
+    k               16.3;
+}
+*/
+
+Phase2 // ice
+{
+    transportModel  Newtonian;
+	Tdep            false;
+    Shomate         false;
+    Tref 			1450;
+    beta            1.2e-4;
+    nu              2.97e-07; 
+    rho             8065;//4140;
+    cp              620;
+    k               25;
+}
+
+Phase3 // water
+{
+    transportModel  Newtonian;
+	CTLE            0.0;//1e-6;
+    nu              2.97e-07; 
+    rho             8052;//4140;
+    cp              530;
+    k               40;
+}
+/*
+);
+
+sigmas
+(
+    (Phase1 Phase2) 0
+    (Phase1 Phase3) 0
+    (Phase2 Phase3) 0
+);
+*/
+KunzCoeffs
+{
+    UInf            U20.0;
+    tInf            t0.005; // L = 0.1 m
+    Cc              C1000;
+    Cv              C1000;
+}
+
+MerkleCoeffs
+{
+    UInf            20.0;
+    tInf            0.005;  // L = 0.1 m
+    Cc              80;
+    Cv              1e-03;
+}
+
+WeldCoeffs
+{
+    UInf            1;
+    tInf            1;  // L = 0.1 m
+    Cc              1;
+    Cv              1;
+    Tmelt           302.93; //302.93; // 1940; // ti-6-4
+    Tzero           0;
+    Tone            1;
+    Tmone           -1;
+    kgOne           1;
+    Mone            1;
+    tOne            1;
+    test            0;
+    Cp              381.5;
+    Lf              80160;
+}
+
+
+SchnerrSauerCoeffs
+{
+    n               1.6e+13;
+    dNuc            2.0e-06;
+    Cc              1;
+    Cv              1;
+}
+
+
+// ************************************************************************* //

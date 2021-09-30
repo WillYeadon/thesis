@@ -1,0 +1,33 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      physicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+muMag 1.0;//1.0;
+
+dablab 0.0;//0;
+
+muMagR 1.0;//1.0;
+
+muUnits 1.0;//1.0;
+
+sigma_l 0.0;//10.0;
+
+epsilon 1.0;//1.0;
+
+nuEM 1e-6;//
+
+k_EM 1.0;
+
+B0 (0 0 0);
